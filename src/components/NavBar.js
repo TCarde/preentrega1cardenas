@@ -1,27 +1,42 @@
 import React from 'react';
+import { Routes, Route, NavLink, Link } from 'react-router-dom';
 import CartWidget from './CartWidget';
 import logo from '../consola.svg';
 
-function NavBar() {
-    return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">                
-                <img src={logo} alt="" width="50" height="40" class="d-inline-block align-text-top"/>    
-                <a class="navbar-brand" href="#">Tito´s Games</a>                        
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        <a class="nav-link" href="#">Xbox</a>
-                        <a class="nav-link" href="#">Play Station</a>
-                        <a class="nav-link" href="#">Nintendo</a>
-                    </div>
-                </div>
-                <CartWidget/>
-            </div>           
-        </nav>      
+const NavBar = () => {
+    return(
+        <div className="container" id="navbar">
+            <div className="row">
+                        <div className="col-6">
+                            <nav className="navbar navbar-expand-lg ">
+                                <div className="container-fluid">
+                                    <Link className="navbar-brand" to={"/"}><img src={logo} alt="Tito´s Games" width={100} /></Link>
+                                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span className="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div className="collapse navbar-collapse" id="navbarNav">
+                                    <ul className="navbar-nav">
+                                        <li className="nav-item">
+                                        <NavLink className="nav-link" aria-current="page" to={"/category/PlayStation"} >Play Station</NavLink>
+                                        </li>
+                                        <li className="nav-item">
+                                        <NavLink className="nav-link" to={"/category/Xbox"}>Xbox</NavLink>
+                                        </li>
+                                        <li className="nav-item">
+                                        <NavLink className="nav-link" to={"/category/Nintendo"}>Nintendo</NavLink>
+                                        </li>
+                                        
+                                    </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                        <div className="col-6 d-flex justify-content-end  align-items-center">
+                            <CartWidget/>
+                        </div>        
+            </div>
+        </div>          
     )
 }
+
 export default NavBar;

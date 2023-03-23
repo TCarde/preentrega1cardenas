@@ -1,19 +1,35 @@
 import React from 'react';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import productos from "../productos.json";
+import ItemList from "./ItemList";
 
-const styles = {
-    color: 'red',
-    fontSize: '20',
-    fontFamily: 'Arial'
-}
+const ItemListContainer = () => {
+    const [item, setItem] = useState([])
+    const {id} = useParams ();
 
-function ItemListContainer(props){
+    useEffect(() => {
+        const  promesa = new Promise((resolve) => {
+             setTimeout(() => {
+                resolve(id ? productos.filter(item => item.categoria === id) : productos)
+            }, 2000)
+        });
+
+        promesa.then((data) => {
+            setItem(data)
+
+        })
+    },[id]);
+
     return (
-        <h1 style={styles}>{props.greeting}</h1>
-    );
-}
-
-ItemListContainer.defaultProps={
-    greeting:"No hay elementos"
+        <div className="container">
+            <div className="row">
+                <ItemList item={item} />
+                
+            </div>
+      
+        </div>       
+    )
 }
 
 export default ItemListContainer;
