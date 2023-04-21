@@ -16,7 +16,7 @@ function App() {
           <Routes>
             <Route path={"/"} exact element={<ItemListContainer/>}/>
             <Route path={"/category/:id"} exact element={<ItemListContainer/>}/>
-            <Route path={"/item/id"} exact element={<ItemDetailContainer/>}/>
+            <Route path={"/item/:id"} exact element={<ItemDetailContainer/>}/>
             <Route path={"*"} exact element={<Error/>}/>      
           </Routes>                
         </BrowserRouter>     
